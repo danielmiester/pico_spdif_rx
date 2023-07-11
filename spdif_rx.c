@@ -13,7 +13,7 @@
 #include "hardware/dma.h"
 #include "hardware/irq.h"
 #include "hardware/sync.h"
-#include "pico/audio.h"
+// #include "pico/audio.h"
 #include "spdif_rx_capture.pio.h"
 #include "spdif_rx_48000.pio.h"
 #include "spdif_rx_96000.pio.h"

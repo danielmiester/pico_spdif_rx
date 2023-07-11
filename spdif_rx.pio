@@ -130,3 +130,7 @@ sync1110:
 sync1xxx:                  ; sync1xxx must be sync1000
     in osr, 2              ; emit sync (sync 1000)         :  2 + (lp-1)/cy    2 + lp/cy
     jmp entry_point        ;                               :  2 + lp/cy        2 + (lp+1)/cy
+
+% c-sdk {
+
+%}
