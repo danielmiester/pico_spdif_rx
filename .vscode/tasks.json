@@ -1,43 +1,58 @@
 {
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "Flash",
-            "type": "shell",
-            "command": "openocd",
-            "args": [
-              "-f",
-              "interface/picoprobe.cfg",
-              "-f",
-              "target/rp2040.cfg",
-              "-c",
-              "program {${command:cmake.launchTargetPath}};init ; reset halt ; rp2040.core1 arp_reset assert 0 ; rp2040.core0 arp_reset assert 0 ; exit"
-            ],
-            "problemMatcher": []
-          },
-          {
-            "label": "Reset",
-            "type": "shell",
-            "command": "openocd",
-            "args": [
-              "-f",
-              "interface/picoprobe.cfg",
-              "-f",
-              "target/rp2040.cfg",
-              "-c",
-              "init ; reset halt ; rp2040.core1 arp_reset assert 0 ; rp2040.core0 arp_reset assert 0 ; exit"
-            ],
-            "problemMatcher": []
-          }
-    //   {
-    //     "label": "Build",
-    //     "type": "cmake",
-    //     "command": "build",
-    //     "problemMatcher": "$gcc",
-    //     "group": {
-    //       "kind": "build",
-    //       "isDefault": true
-    //     }
-    //   }
+      {
+        "label": "Flash",
+        "type": "shell",
+        "command": "openocd",
+        "args": [
+          "-f",
+          "interface/picoprobe.cfg",
+          "-f",
+          "target/rp2040.cfg",
+          "-c",
+          "program {${command:cmake.launchTargetPath}};init ; reset halt ; rp2040.core1 arp_reset assert 0 ; rp2040.core0 arp_reset assert 0 ; exit"
+        ],
+        "problemMatcher": []
+      },
+      {
+        "label": "Reset",
+        "type": "shell",
+        "command": "openocd",
+        "args": [
+          "-f",
+          "interface/picoprobe.cfg",
+          "-f",
+          "target/rp2040.cfg",
+          "-c",
+          "init ; reset halt ; rp2040.core1 arp_reset assert 0 ; rp2040.core0 arp_reset assert 0 ; exit"
+        ],
+        "problemMatcher": []
+      },
+      {
+        "type": "cmake",
+        "label": "CMake: clean rebuild",
+        "command": "cleanRebuild",
+        "targets": [
+          ""
+        ],
+        "group": "build",
+        "problemMatcher": [],
+        "detail": "CMake template clean rebuild task"
+      },
+      {
+        "type": "cmake",
+        "label": "CMake: build",
+        "command": "build",
+        "targets": [
+          ""
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "detail": "CMake template build task"
+      }
     ]
   }

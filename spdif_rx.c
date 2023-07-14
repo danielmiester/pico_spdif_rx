@@ -668,6 +668,7 @@ static void _spdif_rx_decode_start(spdif_rx_samp_freq_t samp_freq, bool inverted
 void __isr __time_critical_func(spdif_rx_dma_irq_handler)()
 {
     _clear_timer(); // timeout must not happen while isr
+    gpio_put(6,1);
     bool proc_dma0 = false;
     bool proc_dma1 = false;
     uint64_t now_us = _micros();
@@ -686,6 +687,7 @@ void __isr __time_critical_func(spdif_rx_dma_irq_handler)()
         _spdif_rx_common_end();
         if (!_spdif_rx_analyze_capture(&samp_freq, &inverted)) {
             _set_timer_after_by_ms(_spdif_rx_capture_retry, capture_retry_interval_ms);
+            gpio_put(6,0);
             return;
         }
         state = SPDIF_RX_STATE_WAITING_STABLE;
@@ -693,6 +695,7 @@ void __isr __time_critical_func(spdif_rx_dma_irq_handler)()
         waiting_start_time_ms = _millis();
         setup_done = true;
         _set_timer_after_by_ms(_spdif_rx_decode_timeout, decode_timeout_ms);
+        gpio_put(6,0);
         return;
     }
     // decode operation below here
@@ -745,6 +748,7 @@ void __isr __time_critical_func(spdif_rx_dma_irq_handler)()
         _spdif_rx_decode_timeout(gcfg.alarm); // call decode timeout target directly
     }
     prev_time_us = now_us;
+    gpio_put(6,0);
 }
 
 // === Public functions ===

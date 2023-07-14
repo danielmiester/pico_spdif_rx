@@ -127,6 +127,9 @@ target_link_libraries(${PROJECT_NAME}
     pico_rand
     pico_multicore
     spdif_rx
+    hardware_interp
+    pico_mem_ops
+    pico_divider
     )
 
 # Enable usb output, disable uart output

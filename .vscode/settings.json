@@ -17,7 +17,8 @@
         }
     },
     "cmake.buildBeforeRun": true,
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "C_Cpp.default.configurationProvider": "",
     "cortex-debug.openocdPath": "C:\\Program Files\\Raspberry Pi\\Pico SDK v1.5.1\\openocd\\openocd.exe",
+    "cortex-debug.variableUseNaturalFormat": false,
     
 }
